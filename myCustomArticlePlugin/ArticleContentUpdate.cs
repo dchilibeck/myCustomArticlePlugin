@@ -43,9 +43,9 @@ namespace myCustomArticlePlugin
                 currentEntity["chili_wordcount"] = WordCount.ToString();
                 currentEntity["chili_debugoutput"] = ParsedContent;
             }
-            catch (Exception) 
+            catch (Exception ex) 
             {
-                throw;
+                throw ex;
             }
         }
 
