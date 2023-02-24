@@ -51,9 +51,12 @@ namespace myCustomArticlePlugin
 
         private int CountWords(String PhraseToParse)
         {
-
-            int WordCount = PhraseToParse.Split(new char[] { ' ', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).Length;
-            return WordCount;
+            int WordCount = 0;
+            if(String.IsNullOrEmpty(PhraseToParse))
+                return WordCount;
+            else
+                WordCount = PhraseToParse.Split(new char[] { ' ', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).Length;
+                return WordCount;
         }
 
         private string ParseContent(String ContentToParse)
@@ -62,10 +65,15 @@ namespace myCustomArticlePlugin
             string parsedResult;
             parsedResult = "";
 
-            result = ContentToParse.Split(new char[] { ' ', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-            foreach (string item in result)
+            if (String.IsNullOrEmpty(ContentToParse))
+                parsedResult = "";
+            else
             {
-                parsedResult = parsedResult + ":" + item;
+                result = ContentToParse.Split(new char[] { ' ', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (string item in result)
+                {
+                    parsedResult = item + ":" + parsedResult;
+                }
             }
 
             return parsedResult;

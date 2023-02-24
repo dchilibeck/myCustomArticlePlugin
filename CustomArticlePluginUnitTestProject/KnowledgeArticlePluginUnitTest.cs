@@ -13,6 +13,23 @@ namespace CustomArticlePluginUnitTestProject
     public class KnowledgeArticlePluginUnitTest
     {
         [TestMethod]
+        public void TestArticlePluginWithNullContent()
+        {
+            var fakedContext = new XrmFakedContext();
+
+            var guid1 = Guid.NewGuid();
+
+            var target = new Entity("knowledgearticle") { Id = guid1 };
+            target["title"] = "My Test Article";
+            
+            //Execute our plugin against a target that contains the KnowledgeArticle content to be parsed
+            var fakedPlugin = fakedContext.ExecutePluginWithTarget<ArticleContentUpdate>(target);
+            var contentCount = target["chili_wordcount"];
+
+            Assert.AreEqual("0", contentCount);
+        }
+
+        [TestMethod]
         public void TestArticlePluginIncludesUpdatedAttributesAfterExecution()
         {
             var fakedContext = new XrmFakedContext();
