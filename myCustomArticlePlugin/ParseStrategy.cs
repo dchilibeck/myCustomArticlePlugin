@@ -15,45 +15,47 @@ namespace myCustomArticlePlugin
                 return "";
             else
             {
-                char[] array = new char[source.Length];
+                char[] itemArray = new char[source.Length];
                 int arrayIndex = 0;
                 bool inside = false;
 
                 for (int i = 0; i < source.Length; i++)
                 {
-                    char let = source[i];
-                    if (let == '<')
+                    char item = source[i];
+                    if (item == '<')
                     {
                         inside = true;
                         continue;
                     }
-                    if (let == '>')
+                    if (item == '>')
                     {
                         inside = false;
                         continue;
                     }
                     if (!inside)
                     {
-                        array[arrayIndex] = let;
+                        itemArray[arrayIndex] = item;
                         arrayIndex++;
                     }                   
                 }
 
-                return new string(array, 0, arrayIndex);
+                return new string(itemArray, 0, arrayIndex);
             }
         }
 
         public static int CountWords(string source)
         {
             int WordCount = 0;
+
             if (String.IsNullOrEmpty(source))
                 return WordCount;
             else
             {
                 string contentToCount = ParseContent(source);
                 WordCount = contentToCount.Split(new char[] { ' ', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).Length;
-                return WordCount;
             }
+
+            return WordCount;
         }
     }
 }

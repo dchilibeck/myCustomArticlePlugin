@@ -37,9 +37,6 @@ namespace myCustomArticlePlugin
                 currentEntity = (Entity)context.InputParameters["Target"];
                 String KbContent = currentEntity.GetAttributeValue<string>("content");
 
-                //int WordCount = this.CountWords(KbContent);
-                //string ParsedContent = this.ParseContent(KbContent);
-
                 int WordCount = ParseStrategy.CountWords(KbContent);
                 string ParsedContent = ParseStrategy.ParseContent(KbContent);
 

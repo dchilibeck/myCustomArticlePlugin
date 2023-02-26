@@ -12,6 +12,14 @@ namespace CustomArticlePluginUnitTestProject
     [TestClass]
     public class KnowledgeArticlePluginUnitTest
     {
+      
+        public void OutputResults(Entity target)
+        {
+            Console.Write(target["chili_wordcount"]);
+            Console.WriteLine("");
+            Console.Write(target["chili_debugoutput"]);
+        }
+
         [TestMethod]
         public void TestArticlePluginWithHtmlConent()
         {
@@ -22,8 +30,8 @@ namespace CustomArticlePluginUnitTestProject
 
             target["title"] = "My Test Article";
 
-            var x = "<p style=font-style: normal; font-variant: normal; line-height: 18px;> Whether math problems, an English paper, or a science fair project.</span>";
-            target["content"] = x;
+            var KbContent = "<p style=font-style: normal; font-variant: normal; line-height: 18px;>Whether math problems, an English paper, or a science fair project.</span>";
+            target["content"] = KbContent;
 
             //Execute our plugin against a target that contains the KnowledgeArticle content to be parsed
             var fakedPlugin = fakedContext.ExecutePluginWithTarget<ArticleContentUpdate>(target);
@@ -33,9 +41,7 @@ namespace CustomArticlePluginUnitTestProject
             Assert.IsTrue(target.Attributes.ContainsKey("chili_wordcount"));
             Assert.IsTrue(target.Attributes.ContainsKey("chili_debugoutput"));
 
-            Console.Write(target["chili_wordcount"]);
-            Console.WriteLine("");
-            Console.Write(target["chili_debugoutput"]);
+            OutputResults(target);
         }
 
         [TestMethod]
@@ -53,6 +59,8 @@ namespace CustomArticlePluginUnitTestProject
             var contentCount = target["chili_wordcount"];
 
             Assert.AreEqual("0", contentCount);
+
+            OutputResults(target);
         }
 
         [TestMethod]
@@ -74,9 +82,7 @@ namespace CustomArticlePluginUnitTestProject
             Assert.IsTrue(target.Attributes.ContainsKey("chili_wordcount"));
             Assert.IsTrue(target.Attributes.ContainsKey("chili_debugoutput"));
 
-            Console.Write(target["chili_wordcount"]);
-            Console.WriteLine("");
-            Console.Write(target["chili_debugoutput"]);
+            OutputResults(target);
         }
 
         [TestMethod]
@@ -88,14 +94,17 @@ namespace CustomArticlePluginUnitTestProject
 
             var target = new Entity("knowledgearticle") { Id = guid1 };
             target["title"] = "My Test Article";
-            target["content"] = "My name is Dan Chilibeck and I live in Halifax.";
+            target["content"] = "My name is Vitoli and I live in Halifax.";
 
             //Execute our plugin against a target that contains the KnowledgeArticle content to be parsed
             var fakedPlugin = fakedContext.ExecutePluginWithTarget<ArticleContentUpdate>(target);
 
             var contentCount = target["chili_wordcount"];
 
-            Assert.AreEqual("10", contentCount);
+            Assert.AreEqual("9", contentCount);
+
+            OutputResults(target);
         }
+
     }
 }
