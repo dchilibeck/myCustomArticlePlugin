@@ -4,20 +4,23 @@ using System;
 using FakeItEasy;
 using FakeXrmEasy;
 
-using myCustomArticlePlugin;
+using Chilibeck.myCustomArticlePlugin;
 using Microsoft.Xrm.Sdk;
 
-namespace CustomArticlePluginUnitTestProject
+namespace Chilibeck.CustomArticlePluginUnitTestProject
 {
     [TestClass]
     public class KnowledgeArticlePluginUnitTest
     {
+        //this is a helper method to output the target attribute values
       
         public void OutputResults(Entity target)
         {
-            Console.Write(target["chili_wordcount"]);
-            Console.WriteLine("");
-            Console.Write(target["chili_debugoutput"]);
+            foreach(var item in target.Attributes)
+            {
+                Console.Write(item);
+                Console.WriteLine("");
+            }
         }
 
         [TestMethod]
@@ -101,6 +104,7 @@ namespace CustomArticlePluginUnitTestProject
 
             var contentCount = target["chili_wordcount"];
 
+            //Assert that the parsing results in a correct count
             Assert.AreEqual("9", contentCount);
 
             OutputResults(target);

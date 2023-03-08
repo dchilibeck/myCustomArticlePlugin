@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 using Microsoft.Xrm.Sdk;
 
-namespace myCustomArticlePlugin
+namespace Chilibeck.myCustomArticlePlugin
 {
+    /* This plugin will be registered against the preoperation step for the same entity so there is no need to perform an explicit save or update
+     * operation in the plugin code as dynamics platform will take care of that for me. The actual parsing logic was also added to another class
+     * with static methods which i think leads to a cleaner, more understandable design
+     */
+
     public class ArticleContentUpdate : IPlugin
     {
         IOrganizationService service;
@@ -28,6 +33,8 @@ namespace myCustomArticlePlugin
                 throw ex;
             }
         }
+
+        
         public void Execute(IServiceProvider serviceProvider)
         {
             try
