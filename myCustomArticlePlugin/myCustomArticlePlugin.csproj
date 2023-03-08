@@ -7,8 +7,8 @@
     <ProjectGuid>{129B65E2-C0BE-4B84-AC1B-9BA5C39338B2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>myCustomArticlePlugin</RootNamespace>
-    <AssemblyName>myCustomArticlePlugin</AssemblyName>
+    <RootNamespace>Chilibeck.myCustomArticlePlugin</RootNamespace>
+    <AssemblyName>Chilibeck.myCustomArticlePlugin</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
